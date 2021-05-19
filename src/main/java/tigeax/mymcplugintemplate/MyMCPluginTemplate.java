@@ -7,6 +7,9 @@ import tigeax.mymcplugintemplate.util.Config;
 import tigeax.mymcplugintemplate.util.Messages;
 
 
+// TODO
+// Info and help command (/pluginname help/info)
+
 public class MyMCPluginTemplate extends JavaPlugin {
 
     private Boolean debug = true;
@@ -19,6 +22,8 @@ public class MyMCPluginTemplate extends JavaPlugin {
 
         config = new Config(this);
         messages = new Messages(this);
+
+        
 
         debug = config.debug();
 
@@ -36,8 +41,6 @@ public class MyMCPluginTemplate extends JavaPlugin {
         }
 
         getLogger().info("Sucessfully enabled");
-
-        this.messages = new Messages(this);
 
     }
 
