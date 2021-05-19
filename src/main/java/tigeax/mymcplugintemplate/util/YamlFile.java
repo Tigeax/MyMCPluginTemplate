@@ -8,7 +8,10 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import tigeax.mymcplugintemplate.MyMCPluginTemplate;
 
 
-public class YAMLFileManager extends YamlConfiguration {
+/**
+ * Extention of YamlConfiguration to make it easier to work with YAML files.
+ */
+public class YamlFile extends YamlConfiguration {
 
 
     private final MyMCPluginTemplate plugin;
@@ -16,7 +19,7 @@ public class YAMLFileManager extends YamlConfiguration {
     private final File file;
 
 
-    public YAMLFileManager(MyMCPluginTemplate plugin, String filename) {
+    public YamlFile(MyMCPluginTemplate plugin, String filename) {
 
         this.plugin = plugin;
         this.filename = filename;
@@ -30,6 +33,9 @@ public class YAMLFileManager extends YamlConfiguration {
     * Check if it exists, and if not create it by calling createIfNotExists().
     */
     public void update() {
+
+        plugin.getLogger().info("Loading " + filename + "...");
+
         createIfNotExists();
 
         try {

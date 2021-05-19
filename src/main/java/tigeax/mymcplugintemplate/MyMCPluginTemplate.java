@@ -1,18 +1,26 @@
 package tigeax.mymcplugintemplate;
 
 import org.apache.commons.lang.NotImplementedException;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import tigeax.mymcplugintemplate.util.YAMLFileManager;
+import tigeax.mymcplugintemplate.util.Config;
+import tigeax.mymcplugintemplate.util.Messages;
 
 
 public class MyMCPluginTemplate extends JavaPlugin {
 
     private Boolean debug = true;
 
+    public Config config;
+    public Messages messages;
+
     @Override
     public void onEnable() {
+
+        config = new Config(this);
+        messages = new Messages(this);
+
+        debug = config.debug();
 
         if (debug) {
             try {
@@ -27,15 +35,15 @@ public class MyMCPluginTemplate extends JavaPlugin {
 
         }
 
-        getLogger().info("${pom.version} sucessfully enabled");
+        getLogger().info("Sucessfully enabled");
 
-        YamlConfiguration messagesYAML = new YAMLFileManager(this, "messages.yml");
+        this.messages = new Messages(this);
 
     }
 
     @Override
     public void onDisable() {
-        getLogger().info("See you again, SpigotMC!");
+        getLogger().info("Sucessfully disabled");
     }
 
 }
