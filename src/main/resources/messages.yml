@@ -1,1 +1,2 @@
 test: "&6Hello {PLAYER} this is a test message!"
+command_sender_not_a_player: "&6Only players can execute this command"

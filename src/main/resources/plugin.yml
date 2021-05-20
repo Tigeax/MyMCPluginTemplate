@@ -5,4 +5,9 @@ api-version: 1.16
 author: Tigeax
 desciption: A plugin made by Tigeax
 commands:
+  plugintemplate:
+    permission: mymcplugintemplate.plugintemplate
+    description: 
+    usage:
 permissions:
+  mymcplugintemplate.plugintemplate

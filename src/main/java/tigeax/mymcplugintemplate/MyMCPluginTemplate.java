@@ -3,12 +3,10 @@ package tigeax.mymcplugintemplate;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import tigeax.mymcplugintemplate.command.mainCommand;
 import tigeax.mymcplugintemplate.util.Config;
 import tigeax.mymcplugintemplate.util.Messages;
 
-
-// TODO
-// Info and help command (/pluginname help/info)
 
 public class MyMCPluginTemplate extends JavaPlugin {
 
@@ -23,10 +21,10 @@ public class MyMCPluginTemplate extends JavaPlugin {
         config = new Config(this);
         messages = new Messages(this);
 
+        // Register command executors
+        getCommand("plugintemplate").setExecutor(new mainCommand());
+
         
-
-        debug = config.debug();
-
         if (debug) {
             try {
                 throw new NotImplementedException("Try catch");

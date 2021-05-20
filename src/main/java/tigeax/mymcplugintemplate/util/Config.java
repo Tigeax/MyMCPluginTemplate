@@ -6,34 +6,27 @@ import tigeax.mymcplugintemplate.MyMCPluginTemplate;
 public class Config extends YamlFile {
 
     private Boolean debug;
-    private String mainCommandName;
 
     public Config(MyMCPluginTemplate plugin) {
         super(plugin, "config.yml");
 
-        loadMessagesFromFile();
+        loadConfigFromFile();
     }
 
 
     @Override
     public void update() {
         super.update();
-        loadMessagesFromFile();
+        loadConfigFromFile();
     }
 
-    private void loadMessagesFromFile() {
+    private void loadConfigFromFile() {
         debug = getBoolean("debug");
-        mainCommandName = getString("main_command_name");
     }
 
 
     public Boolean debug() {
         return this.debug;
     }
-    
-    public String mainCommandName() {
-        return this.mainCommandName;
-    }
-
     
 }
