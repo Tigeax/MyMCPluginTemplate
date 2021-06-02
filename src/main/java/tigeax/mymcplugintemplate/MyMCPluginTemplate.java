@@ -3,17 +3,23 @@ package tigeax.mymcplugintemplate;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import tigeax.mymcplugintemplate.command.mainCommand;
-import tigeax.mymcplugintemplate.util.Config;
-import tigeax.mymcplugintemplate.util.Messages;
+import tigeax.mymcplugintemplate.commands.CommandManager;
+import tigeax.mymcplugintemplate.commands.MainCommand;
+import tigeax.mymcplugintemplate.configuration.Config;
+import tigeax.mymcplugintemplate.configuration.Messages;
+import tigeax.mymcplugintemplate.util.Util;
 
 
 public class MyMCPluginTemplate extends JavaPlugin {
+
+    private static MyMCPluginTemplate instance;
 
     private Boolean debug = true;
 
     public Config config;
     public Messages messages;
+
+    public CommandManager commandManager;
 
     @Override
     public void onEnable() {
@@ -21,10 +27,15 @@ public class MyMCPluginTemplate extends JavaPlugin {
         config = new Config(this);
         messages = new Messages(this);
 
-        // Register command executors
-        getCommand("plugintemplate").setExecutor(new mainCommand());
+        setInstance(this);
 
-        
+        commandManager = new CommandManager();
+
+        commandManager.setup();
+
+        Util.registerCommand(config.mainCommandName, new MainCommand(config.mainCommandName));
+
+
         if (debug) {
             try {
                 throw new NotImplementedException("Try catch");
@@ -38,13 +49,31 @@ public class MyMCPluginTemplate extends JavaPlugin {
 
         }
 
-        getLogger().info("Sucessfully enabled");
+
+
+        getLogger().info("Successfully enabled");
 
     }
 
     @Override
     public void onDisable() {
-        getLogger().info("Sucessfully disabled");
+        getLogger().info("Successfully disabled");
     }
+
+    public void reload() {
+        getLogger().info("Reloading!");
+        onDisable();
+        onEnable();
+    }
+
+
+    public static MyMCPluginTemplate getInstance() {
+        return instance;
+    }
+
+    private static void setInstance(MyMCPluginTemplate instance) {
+        MyMCPluginTemplate.instance = instance;
+    }
+
 
 }

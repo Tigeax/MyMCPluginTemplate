@@ -1,8 +1,9 @@
-package tigeax.mymcplugintemplate.util;
+package tigeax.mymcplugintemplate.configuration;
 
 import org.bukkit.entity.Player;
 
 import tigeax.mymcplugintemplate.MyMCPluginTemplate;
+import tigeax.mymcplugintemplate.util.Util;
 
 
 public class Messages extends YamlFile {
@@ -26,7 +27,7 @@ public class Messages extends YamlFile {
 
     private void loadMessagesFromFile() {
         test                    = Util.parseChatColors(getString("test"));
-        commandSenderNotAPlayer = Util.parseChatColors(getString("commandSenderNotAPlayer"));
+        commandSenderNotAPlayer = Util.parseChatColors(getString("command_sender_not_a_player"));
     }
 
 

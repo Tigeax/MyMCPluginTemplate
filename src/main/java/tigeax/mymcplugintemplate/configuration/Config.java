@@ -1,11 +1,12 @@
-package tigeax.mymcplugintemplate.util;
+package tigeax.mymcplugintemplate.configuration;
 
 import tigeax.mymcplugintemplate.MyMCPluginTemplate;
 
 
 public class Config extends YamlFile {
 
-    private Boolean debug;
+    public Boolean debug;
+    public String mainCommandName;
 
     public Config(MyMCPluginTemplate plugin) {
         super(plugin, "config.yml");
@@ -22,11 +23,7 @@ public class Config extends YamlFile {
 
     private void loadConfigFromFile() {
         debug = getBoolean("debug");
-    }
-
-
-    public Boolean debug() {
-        return this.debug;
+        mainCommandName = getString("mainCommandName");
     }
     
 }
