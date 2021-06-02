@@ -1,6 +1,6 @@
 package tigeax.mymcplugintemplate.commands;
 
-import org.bukkit.entity.Player;
+import org.bukkit.command.CommandSender;
 
 public abstract class SubCommand {
 
@@ -8,12 +8,17 @@ public abstract class SubCommand {
      * /<command> <subcommand> args[0] args[1]
      */
 
-    public SubCommand() {
+    private String name;
+
+    public SubCommand(String name) {
+        this.name = name.toLowerCase();
     }
 
-    public abstract void onCommand(Player player, String[] args);
+    public abstract void onCommand(CommandSender sender, String[] args);
 
-    public abstract String name();
+    public String name() {
+        return name;
+    }
 
     public abstract String info();
 

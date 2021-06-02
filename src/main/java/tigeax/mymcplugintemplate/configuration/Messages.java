@@ -8,26 +8,27 @@ import tigeax.mymcplugintemplate.util.Util;
 
 public class Messages extends YamlFile {
 
-
-    private String test, commandSenderNotAPlayer;
+    private MyMCPluginTemplate plugin;
+    private String test, helloPlayer, commandSenderNotAPlayer;
 
     
     public Messages(MyMCPluginTemplate plugin) {
         super(plugin, "messages.yml");
-
+        this.plugin = plugin;
         loadMessagesFromFile();
     }
 
 
-    @Override
     public void update() {
-        super.update();
+        super.updateFile();
         loadMessagesFromFile();
     }
 
     private void loadMessagesFromFile() {
-        test                    = Util.parseChatColors(getString("test"));
-        commandSenderNotAPlayer = Util.parseChatColors(getString("command_sender_not_a_player"));
+        test                    = getMessage("test");
+        helloPlayer             = getMessage("helloPlayer");
+        commandSenderNotAPlayer = getMessage("commandSenderNotAPlayer");
+
     }
 
 
@@ -35,10 +36,28 @@ public class Messages extends YamlFile {
         return test.replaceAll("{PLAYER}", player.getDisplayName());
     }
 
+    public String helloPlayer(Player player) {
+        return helloPlayer.replaceAll("{PLAYER}", player.getDisplayName());
+    }
+
     public String commandSenderNotAPlayer() {
         return commandSenderNotAPlayer;
     }
         
+
+    private String getMessage(String path) {
+        String message;
+        
+        try {
+            message =  Util.parseChatColors(getString(path)); 
+        } catch (IllegalArgumentException e) {
+            message = "";
+            plugin.getLogger().warning("Failed to get message " + path + " from messages.yml");
+        }
+
+        return message;
+    }
+
 
     
 }

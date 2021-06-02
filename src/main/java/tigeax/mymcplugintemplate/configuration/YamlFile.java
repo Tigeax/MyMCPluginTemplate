@@ -25,14 +25,14 @@ public class YamlFile extends YamlConfiguration {
         this.filename = filename;
         this.file = new File(plugin.getDataFolder(), filename);
         
-        update();
+        this.updateFile();
     }
 
     /**
     * Reload/update the file, for when it was externally edited.
     * Check if it exists, and if not create it by calling createIfNotExists().
     */
-    public void update() {
+    public void updateFile() {
 
         plugin.getLogger().info("Loading " + filename + "...");
 

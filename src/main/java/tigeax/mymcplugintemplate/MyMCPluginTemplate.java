@@ -3,11 +3,10 @@ package tigeax.mymcplugintemplate;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import tigeax.mymcplugintemplate.commands.CommandManager;
-import tigeax.mymcplugintemplate.commands.MainCommand;
+import tigeax.mymcplugintemplate.commands.main.MainCommand;
+import tigeax.mymcplugintemplate.commands.menu.MenuCommand;
 import tigeax.mymcplugintemplate.configuration.Config;
 import tigeax.mymcplugintemplate.configuration.Messages;
-import tigeax.mymcplugintemplate.util.Util;
 
 
 public class MyMCPluginTemplate extends JavaPlugin {
@@ -19,21 +18,17 @@ public class MyMCPluginTemplate extends JavaPlugin {
     public Config config;
     public Messages messages;
 
-    public CommandManager commandManager;
-
     @Override
     public void onEnable() {
+
+        setInstance(this);
 
         config = new Config(this);
         messages = new Messages(this);
 
-        setInstance(this);
-
-        commandManager = new CommandManager();
-
-        commandManager.setup();
-
-        Util.registerCommand(config.mainCommandName, new MainCommand(config.mainCommandName));
+        // Setup commands
+        new MainCommand(config.mainCommandName, config.mainCommandAliases);
+        new MenuCommand(config.guiCommandName, config.guiCommandAliases);
 
 
         if (debug) {

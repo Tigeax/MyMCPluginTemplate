@@ -1,15 +1,12 @@
 package tigeax.mymcplugintemplate.util;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
-
-import tigeax.mymcplugintemplate.MyMCPluginTemplate;
 
 public class Util {
 
@@ -52,6 +49,7 @@ public class Util {
             bukkitCommandMap.setAccessible(true);
             CommandMap commandMap = (CommandMap) bukkitCommandMap.get(Bukkit.getServer());
             commandMap.register("seen", executor);
+            
         } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
             e.printStackTrace();
         }

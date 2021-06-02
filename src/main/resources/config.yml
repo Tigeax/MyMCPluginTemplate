@@ -1,2 +1,5 @@
-debug: true
-mainCommandName: 'test'
+debug: true # Show extra information in the console
+mainCommandName: 'test' # Name of the main command of the plugin
+mainCommandAliases: ['t'] # Aliases for the main command
+guiCommandName: 'gui' # Name of the command to open the GUI
+guiCommandAliases: ['menu', 'g'] # Aliases for the GUI command
