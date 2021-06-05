@@ -15,12 +15,20 @@ public class MainCommand extends Command {
     public MainCommand(String name, List<String> aliases) {
         super(name, aliases);
         setupSubCommands();
+        
     }
 
     private void setupSubCommands() {
         super.commands.add(new Author("author"));
         super.commands.add(new Sub2("sub2"));
     }
+
+    
+    @Override
+    public List<String> getTabCompletions(String[] args) {
+        return Arrays.asList("test1", "test2", "test3");
+    }
+
 
     @Override
     public boolean execute(CommandSender sender, String alias, String[] args) {

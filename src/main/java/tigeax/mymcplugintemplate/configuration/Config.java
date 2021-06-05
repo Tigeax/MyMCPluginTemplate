@@ -21,23 +21,26 @@ public class Config extends YamlFile {
         loadConfigFromFile();
     }
 
+    /** Reload the config file and get the settings again */
     public void update() {
         super.updateFile();
         loadConfigFromFile();
     }
 
+    /** Load settings from config. If not found, use the default value */
     private void loadConfigFromFile() {
 
         // Debug
-        debug = getBoolean("debug");
+        debug = getBoolean("debug", true);
 
         // Main command
-        mainCommandName = getString("mainCommandName");
+        mainCommandName = getString("mainCommandName", "main");
         mainCommandAliases = getStringList("mainCommandAliases");
 
         // GUI command
-        guiCommandName = getString("guiCommandName");
+        guiCommandName = getString("guiCommandName", "menu");
         guiCommandAliases = getStringList("guiCommandAliases");
+
     }
 
 }

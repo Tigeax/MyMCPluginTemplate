@@ -5,19 +5,16 @@ import org.bukkit.entity.Player;
 import tigeax.mymcplugintemplate.MyMCPluginTemplate;
 import tigeax.mymcplugintemplate.util.Util;
 
-
 public class Messages extends YamlFile {
 
     private MyMCPluginTemplate plugin;
-    private String test, helloPlayer, commandSenderNotAPlayer;
+    private String helloPlayer, commandSenderNotAPlayer;
 
-    
     public Messages(MyMCPluginTemplate plugin) {
         super(plugin, "messages.yml");
         this.plugin = plugin;
         loadMessagesFromFile();
     }
-
 
     public void update() {
         super.updateFile();
@@ -25,15 +22,9 @@ public class Messages extends YamlFile {
     }
 
     private void loadMessagesFromFile() {
-        test                    = getMessage("test");
-        helloPlayer             = getMessage("helloPlayer");
+        helloPlayer = getMessage("helloPlayer");
         commandSenderNotAPlayer = getMessage("commandSenderNotAPlayer");
 
-    }
-
-
-    public String test(Player player) {
-        return test.replaceAll("{PLAYER}", player.getDisplayName());
     }
 
     public String helloPlayer(Player player) {
@@ -43,13 +34,12 @@ public class Messages extends YamlFile {
     public String commandSenderNotAPlayer() {
         return commandSenderNotAPlayer;
     }
-        
 
     private String getMessage(String path) {
         String message;
-        
+
         try {
-            message =  Util.parseChatColors(getString(path)); 
+            message = Util.parseChatColors(getString(path));
         } catch (IllegalArgumentException e) {
             message = "";
             plugin.getLogger().warning("Failed to get message " + path + " from messages.yml");
@@ -58,6 +48,4 @@ public class Messages extends YamlFile {
         return message;
     }
 
-
-    
 }
