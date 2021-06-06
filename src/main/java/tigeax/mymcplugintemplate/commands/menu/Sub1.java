@@ -1,5 +1,7 @@
 package tigeax.mymcplugintemplate.commands.menu;
 
+import java.util.ArrayList;
+
 import org.bukkit.command.CommandSender;
 
 import tigeax.mymcplugintemplate.commands.SubCommand;
@@ -12,7 +14,7 @@ public class Sub1 extends SubCommand {
 
 
     @Override
-    public void onCommand(CommandSender sender, String[] args) {
+    public void onCommand(CommandSender sender, ArrayList<String> args) {
         sender.sendMessage("Menu Sub1");
     }
 

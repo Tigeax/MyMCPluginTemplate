@@ -2,9 +2,7 @@ package tigeax.mymcplugintemplate;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
-import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import tigeax.mymcplugintemplate.commands.Command;
@@ -14,49 +12,34 @@ import tigeax.mymcplugintemplate.configuration.Config;
 import tigeax.mymcplugintemplate.configuration.Messages;
 import tigeax.mymcplugintemplate.eventlisteners.OnTabComplete;
 
-
 public class MyMCPluginTemplate extends JavaPlugin {
 
     private static MyMCPluginTemplate instance;
 
-    public Config config;
-    public Messages messages;
+    private Config config;
+    private Messages messages;
 
     private ArrayList<Command> commands = new ArrayList<Command>();
 
     @Override
     public void onEnable() {
 
+        // Set instance
         setInstance(this);
 
+        // Setup config files
         config = new Config(this);
         messages = new Messages(this);
 
         // Setup commands
-        registerCommand(new MainCommand(config.mainCommandName, config.mainCommandAliases));
-        registerCommand(new MenuCommand(config.guiCommandName, config.guiCommandAliases));
+        registerCommand(new MainCommand(config.mainCommandName, config.mainCommandAliases, "myplugin.maincommand"));
+        registerCommand(new MenuCommand(config.guiCommandName, config.guiCommandAliases, "myplugin.menucommand"));
 
         // Register events
         getServer().getPluginManager().registerEvents(new OnTabComplete(), this);
 
-
-        if (config.debug) {
-            try {
-                throw new NotImplementedException("Try catch");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            getLogger().info("getLogger().info()");
-            getLogger().warning("getLogger().warning()");
-            getLogger().severe("getLogger().severe()");
-
-        }
-
-
-
+        // Log successful enabled message
         getLogger().info("Successfully enabled");
-
     }
 
     @Override
@@ -70,19 +53,25 @@ public class MyMCPluginTemplate extends JavaPlugin {
         onEnable();
     }
 
+    private static void setInstance(MyMCPluginTemplate instance) {
+        MyMCPluginTemplate.instance = instance;
+    }
 
     public static MyMCPluginTemplate getInstance() {
         return instance;
     }
 
-    private static void setInstance(MyMCPluginTemplate instance) {
-        MyMCPluginTemplate.instance = instance;
-    }
-
     private void registerCommand(Command commandObj) {
         commands.add(commandObj);
     }
-    
+
+    public Config getConfig() {
+        return config;
+    }
+
+    public Messages getMessages() {
+        return messages;
+    }
 
     public Command getPluginCommand(String name) {
         Iterator<Command> commandsIterator = commands.iterator();
@@ -94,19 +83,14 @@ public class MyMCPluginTemplate extends JavaPlugin {
                 return command;
             }
 
-            List<String> aliases = command.getAliases();
-            int length = aliases.size();
-
-            for (int i = 0; i < length; ++i) {
-                String alias = aliases.get(i);
+            for (String alias : command.getAliases()) {
                 if (name.equalsIgnoreCase(alias)) {
                     return command;
                 }
-
             }
+
         }
         return null;
     }
-
 
 }

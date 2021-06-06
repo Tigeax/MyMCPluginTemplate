@@ -4,61 +4,74 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.util.StringUtil;
 
 import tigeax.mymcplugintemplate.commands.Command;
 import tigeax.mymcplugintemplate.commands.SubCommand;
+import tigeax.mymcplugintemplate.util.Util;
 
 public class MainCommand extends Command {
     
-    public MainCommand(String name, List<String> aliases) {
-        super(name, aliases);
+    public MainCommand(String name, List<String> aliases, String permission) {
+        super(name, aliases, permission);
         setupSubCommands();
-        
+        setDescription("Main command of the plugin");
+        permission = "myplugin.command";
     }
 
     private void setupSubCommands() {
-        super.commands.add(new Author("author"));
-        super.commands.add(new Sub2("sub2"));
+        super.subCommands.add(new HelloWorld("helloworld"));
+        super.subCommands.add(new Author("author"));
+        super.subCommands.add(new Reload("reload"));
     }
 
     
     @Override
     public List<String> getTabCompletions(String[] args) {
-        return Arrays.asList("test1", "test2", "test3");
+
+        List<String> subCommandNames = Arrays.asList("helloworld", "author", "reload");
+
+        if (args.length == 0) {
+            return subCommandNames; 
+        }
+
+        List<String> completions = new ArrayList<>();
+
+        if (args.length == 1) {
+            StringUtil.copyPartialMatches(args[0], subCommandNames, completions);
+            return completions;
+        }
+
+        return null;
     }
 
 
     @Override
     public boolean execute(CommandSender sender, String alias, String[] args) {
 
+        if (!sender.hasPermission(permission)) {
+            Util.sendMessage(sender, plugin.getMessages().noPermissionCommand());
+            return true;
+        }
 
         if (args.length == 0) {
-            sender.sendMessage(ChatColor.RED + "Please add arguments to your command. Type /yt help for info");
+            Util.sendMessage(sender, plugin.getMessages().notEnoughArguments());
             return true;
         }
 
-        SubCommand target = this.getSubCommand(args[0]);
+        SubCommand target = super.getSubCommand(args[0]);
 
         if (target == null) {
-            sender.sendMessage(ChatColor.RED + "Invalid subcommand");
+            Util.sendMessage(sender, plugin.getMessages().invalidSubCommand());
             return true;
         }
 
-        ArrayList<String> arrayList = new ArrayList<String>();
 
-        arrayList.addAll(Arrays.asList(args));
-        arrayList.remove(0);
+        ArrayList<String> argsList = new ArrayList<String>(Arrays.asList(args));
+        argsList.remove(0);
 
-        try{
-            target.onCommand(sender, args);
-        }catch (Exception e){
-            sender.sendMessage(ChatColor.RED + "An error has occurred.");
-
-            e.printStackTrace();
-            
-        }
+        target.onCommand(sender, argsList);
 
         return true;
     }

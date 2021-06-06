@@ -11,16 +11,17 @@ import tigeax.mymcplugintemplate.util.Util;
 
 public abstract class Command extends BukkitCommand {
 
-    public MyMCPluginTemplate plugin;
+    protected MyMCPluginTemplate plugin;
 
+    public ArrayList<SubCommand> subCommands = new ArrayList<SubCommand>();
 
-    // TODO: Finish Tab complete
+    public String permission;
 
-    public ArrayList<SubCommand> commands = new ArrayList<SubCommand>();
-
-    public Command(String name, List<String> aliases) {
+    public Command(String name, List<String> aliases, String permission) {
         super(name);
         plugin = MyMCPluginTemplate.getInstance();
+
+        this.permission = permission;
 
         setAliases(aliases);
     
@@ -29,26 +30,22 @@ public abstract class Command extends BukkitCommand {
 
 
     public SubCommand getSubCommand(String name) {
-        Iterator<SubCommand> subcommands = commands.iterator();
+        Iterator<SubCommand> subCommandsIterator = subCommands.iterator();
 
-        while (subcommands.hasNext()) {
-            SubCommand sc = (SubCommand) subcommands.next();
+        while (subCommandsIterator.hasNext()) {
+            SubCommand subCommand = (SubCommand) subCommandsIterator.next();
 
-            if (sc.name().equalsIgnoreCase(name)) {
-                return sc;
+            if (subCommand.name().equalsIgnoreCase(name)) {
+                return subCommand;
             }
 
-            String[] aliases;
-            int length = (aliases = sc.aliases()).length;
-
-            for (int var5 = 0; var5 < length; ++var5) {
-                String alias = aliases[var5];
+            for (String alias : subCommand.aliases()) {
                 if (name.equalsIgnoreCase(alias)) {
-                    return sc;
+                    return subCommand;
                 }
-
             }
         }
+
         return null;
     }
 

@@ -4,18 +4,20 @@ import java.util.ArrayList;
 
 import org.bukkit.command.CommandSender;
 
+import tigeax.mymcplugintemplate.MyMCPluginTemplate;
 import tigeax.mymcplugintemplate.commands.SubCommand;
+import tigeax.mymcplugintemplate.util.Util;
 
-public class Author extends SubCommand {
+public class Reload extends SubCommand {
 
-    
-    public Author(String name) {
+    public Reload(String name) {
         super(name);
     }
 
     @Override
     public void onCommand(CommandSender sender, ArrayList<String> args) {
-        sender.sendMessage("This plugin is made by Tigeax");
+        Util.sendMessage(sender, plugin.getMessages().reload());
+        MyMCPluginTemplate.getInstance().reload();
     }
 
 }

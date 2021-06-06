@@ -12,11 +12,9 @@ import tigeax.mymcplugintemplate.commands.Command;
 
 public class OnTabComplete implements Listener {
 
-
+    
     @EventHandler
     public void onTabComplete(TabCompleteEvent event) {
-
-        System.out.println(event.getBuffer());
 
         String buffer = event.getBuffer();
         String[] splitBuffer = buffer.split(" ");
@@ -24,6 +22,11 @@ public class OnTabComplete implements Listener {
         String[] args = Arrays.copyOfRange(splitBuffer, 1, splitBuffer.length);
 
         Command command  = MyMCPluginTemplate.getInstance().getPluginCommand(commandName);
+
+        if (command == null) {
+            return;
+        }
+
         List<String> tabCompletions = command.getTabCompletions(args);
 
         if (tabCompletions == null) {

@@ -1,2 +1,6 @@
 helloPlayer: "&6Hello {PLAYER}!"
 commandSenderNotAPlayer: "&6Only players can execute this command"
+notEnoughArguments: "&6Not enough arguments for command"
+reload: "&3Reloading plugin"
+invalidSubCommand: "&6Invalid subcommand"
+noPermissionCommand: "&6You do not have the required permissions to use this command"

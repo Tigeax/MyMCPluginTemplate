@@ -8,7 +8,7 @@ import tigeax.mymcplugintemplate.util.Util;
 public class Messages extends YamlFile {
 
     private MyMCPluginTemplate plugin;
-    private String helloPlayer, commandSenderNotAPlayer;
+    private String helloPlayer, commandSenderNotAPlayer, notEnoughArguments, reload, invalidSubCommand, noPermissionCommand;
 
     public Messages(MyMCPluginTemplate plugin) {
         super(plugin, "messages.yml");
@@ -24,16 +24,37 @@ public class Messages extends YamlFile {
     private void loadMessagesFromFile() {
         helloPlayer = getMessage("helloPlayer");
         commandSenderNotAPlayer = getMessage("commandSenderNotAPlayer");
+        notEnoughArguments = getMessage("notEnoughArguments");
+        reload = getMessage("reload");
+        invalidSubCommand = getMessage("invalidSubCommand");
+        noPermissionCommand = getMessage("noPermissionCommand");
 
     }
 
     public String helloPlayer(Player player) {
-        return helloPlayer.replaceAll("{PLAYER}", player.getDisplayName());
+        return helloPlayer.replace("{PLAYER}", player.getDisplayName());
     }
 
     public String commandSenderNotAPlayer() {
         return commandSenderNotAPlayer;
     }
+
+    public String reload() {
+        return reload;
+    }
+
+    public String notEnoughArguments() {
+        return notEnoughArguments;
+    }
+
+    public String invalidSubCommand() {
+        return invalidSubCommand;
+    }
+
+    public String noPermissionCommand() {
+        return noPermissionCommand;
+    }
+
 
     private String getMessage(String path) {
         String message;
