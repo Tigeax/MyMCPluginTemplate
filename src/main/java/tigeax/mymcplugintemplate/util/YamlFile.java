@@ -1,4 +1,4 @@
-package tigeax.mymcplugintemplate.configuration;
+package tigeax.mymcplugintemplate.util;
 
 import java.io.File;
 import java.io.IOException;

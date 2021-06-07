@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import org.bukkit.entity.Player;
 
-import tigeax.mymcplugintemplate.commands.SubCommand;
 import tigeax.mymcplugintemplate.util.Util;
+import tigeax.mymcplugintemplate.util.commands.SubCommand;
 
 public class HelloWorld extends SubCommand {
 

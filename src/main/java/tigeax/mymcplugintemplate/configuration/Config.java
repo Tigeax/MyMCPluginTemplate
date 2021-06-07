@@ -3,6 +3,7 @@ package tigeax.mymcplugintemplate.configuration;
 import java.util.List;
 
 import tigeax.mymcplugintemplate.MyMCPluginTemplate;
+import tigeax.mymcplugintemplate.util.YamlFile;
 
 public class Config extends YamlFile {
 

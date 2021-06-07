@@ -11,7 +11,7 @@ import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
 
 import tigeax.mymcplugintemplate.MyMCPluginTemplate;
-import tigeax.mymcplugintemplate.commands.SubCommand;
+import tigeax.mymcplugintemplate.util.commands.SubCommand;
 
 public class Util {
 

@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.server.TabCompleteEvent;
 
 import tigeax.mymcplugintemplate.MyMCPluginTemplate;
-import tigeax.mymcplugintemplate.commands.Command;
+import tigeax.mymcplugintemplate.util.commands.Command;
 
 public class OnTabComplete implements Listener {
 

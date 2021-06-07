@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.bukkit.entity.Player;
 
-import tigeax.mymcplugintemplate.commands.Command;
 import tigeax.mymcplugintemplate.util.Util;
+import tigeax.mymcplugintemplate.util.commands.Command;
 
 public class Menu extends Command {
     

@@ -1,4 +1,4 @@
-package tigeax.mymcplugintemplate.commands;
+package tigeax.mymcplugintemplate.util.commands;
 
 /**
  * Represents a command that has sub commands.

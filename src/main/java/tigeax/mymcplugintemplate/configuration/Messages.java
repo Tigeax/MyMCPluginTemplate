@@ -4,6 +4,7 @@ import org.bukkit.entity.Player;
 
 import tigeax.mymcplugintemplate.MyMCPluginTemplate;
 import tigeax.mymcplugintemplate.util.Util;
+import tigeax.mymcplugintemplate.util.YamlFile;
 
 public class Messages extends YamlFile {
 

@@ -7,13 +7,13 @@ import java.util.List;
 import org.bukkit.command.CommandSender;
 import org.bukkit.util.StringUtil;
 
-import tigeax.mymcplugintemplate.commands.Command;
-import tigeax.mymcplugintemplate.commands.SubCommand;
-import tigeax.mymcplugintemplate.commands.SubCommandManager;
 import tigeax.mymcplugintemplate.commands.main.subcommands.Author;
 import tigeax.mymcplugintemplate.commands.main.subcommands.HelloWorld;
 import tigeax.mymcplugintemplate.commands.main.subcommands.Reload;
 import tigeax.mymcplugintemplate.util.Util;
+import tigeax.mymcplugintemplate.util.commands.Command;
+import tigeax.mymcplugintemplate.util.commands.SubCommand;
+import tigeax.mymcplugintemplate.util.commands.SubCommandManager;
 
 public class MainCmd extends Command implements SubCommandManager {
 

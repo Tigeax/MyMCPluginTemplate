@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import org.bukkit.command.CommandSender;
 
-import tigeax.mymcplugintemplate.commands.SubCommand;
+import tigeax.mymcplugintemplate.util.commands.SubCommand;
 
 public class Author extends SubCommand {
 

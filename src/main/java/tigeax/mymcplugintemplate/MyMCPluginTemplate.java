@@ -5,12 +5,12 @@ import java.util.Iterator;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import tigeax.mymcplugintemplate.commands.Command;
 import tigeax.mymcplugintemplate.commands.main.MainCmd;
 import tigeax.mymcplugintemplate.commands.menu.Menu;
 import tigeax.mymcplugintemplate.configuration.Config;
 import tigeax.mymcplugintemplate.configuration.Messages;
 import tigeax.mymcplugintemplate.eventlisteners.OnTabComplete;
+import tigeax.mymcplugintemplate.util.commands.Command;
 
 public class MyMCPluginTemplate extends JavaPlugin {
 
