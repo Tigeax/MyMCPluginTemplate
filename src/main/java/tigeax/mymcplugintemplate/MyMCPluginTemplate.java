@@ -6,8 +6,8 @@ import java.util.Iterator;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import tigeax.mymcplugintemplate.commands.Command;
-import tigeax.mymcplugintemplate.commands.main.MainCommand;
-import tigeax.mymcplugintemplate.commands.menu.MenuCommand;
+import tigeax.mymcplugintemplate.commands.main.MainCmd;
+import tigeax.mymcplugintemplate.commands.menu.Menu;
 import tigeax.mymcplugintemplate.configuration.Config;
 import tigeax.mymcplugintemplate.configuration.Messages;
 import tigeax.mymcplugintemplate.eventlisteners.OnTabComplete;
@@ -32,8 +32,8 @@ public class MyMCPluginTemplate extends JavaPlugin {
         messages = new Messages(this);
 
         // Setup commands
-        registerCommand(new MainCommand(config.mainCommandName, config.mainCommandAliases, "myplugin.maincommand"));
-        registerCommand(new MenuCommand(config.guiCommandName, config.guiCommandAliases, "myplugin.menucommand"));
+        registerCommand(new MainCmd(config.mainCommandName, config.mainCommandAliases, "myplugin.maincommand"));
+        registerCommand(new Menu(config.guiCommandName, config.guiCommandAliases, "myplugin.menucommand"));
 
         // Register events
         getServer().getPluginManager().registerEvents(new OnTabComplete(), this);
@@ -65,10 +65,12 @@ public class MyMCPluginTemplate extends JavaPlugin {
         commands.add(commandObj);
     }
 
+    /** Get the plugin's {@link Config} */
     public Config getConfig() {
         return config;
     }
 
+    /** Get the plugin's {@link Messages} */
     public Messages getMessages() {
         return messages;
     }

@@ -1,4 +1,4 @@
-package tigeax.mymcplugintemplate.commands.main;
+package tigeax.mymcplugintemplate.commands.main.subcommands;
 
 import java.util.ArrayList;
 
@@ -11,10 +11,11 @@ public class Author extends SubCommand {
     
     public Author(String name) {
         super(name);
+        setPermission("myplugin.maincommand.author");
     }
 
     @Override
-    public void onCommand(CommandSender sender, ArrayList<String> args) {
+    public void onCommandHasPerm(CommandSender sender, ArrayList<String> args) {
         sender.sendMessage("This plugin is made by Tigeax");
     }
 

@@ -6,8 +6,6 @@ import tigeax.mymcplugintemplate.MyMCPluginTemplate;
 
 public class Config extends YamlFile {
 
-    private MyMCPluginTemplate plugin;
-
     public Boolean debug;
     public String mainCommandName;
     public List<String> mainCommandAliases;
@@ -16,8 +14,6 @@ public class Config extends YamlFile {
 
     public Config(MyMCPluginTemplate plugin) {
         super(plugin, "config.yml");
-        this.plugin = plugin;
-
         loadConfigFromFile();
     }
 

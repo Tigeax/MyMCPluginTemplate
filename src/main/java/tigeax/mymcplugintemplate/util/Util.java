@@ -1,6 +1,8 @@
 package tigeax.mymcplugintemplate.util;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -9,25 +11,23 @@ import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
 
 import tigeax.mymcplugintemplate.MyMCPluginTemplate;
+import tigeax.mymcplugintemplate.commands.SubCommand;
 
 public class Util {
 
     /**
      * Translates a string using the '&' color code character into a string that
-     * uses the internal ChatColor.COLOR_CODE color code character. &0 black, &1
-     * dark blue, &2 dark green, &3 dark aqua, &4 dark red, &5 dark purple, &6 gold,
-     * &7 gray, &8 dark grey, &9 blue, &a green, &b aqua, &c red, &d aqua, &e
-     * yellow, &f white, &k obfuscated, &l bold, &m strikethrough, &n underline, &o
-     * italic, &r reset
+     * uses the {@link ChatColor} color code character.
      * 
      * @param string String to translate
+     * @return The parsed String
      */
     public static String parseChatColors(String string) {
         return ChatColor.translateAlternateColorCodes('&', string);
     }
 
     /**
-     * Send a message to the sender only if the msg is not empty. This is to prevent
+     * Send a message to the {@link CommandSender} only if the msg is not empty. This is to prevent
      * sending blank lines.
      * 
      * @param sender Sender to send message to.
@@ -43,10 +43,10 @@ public class Util {
     }
 
     /**
-     * Register a command after plugn startup using reflection
+     * Register a {@link Command} under a name. After plugin startup using reflection
      * 
-     * @param name     Name of command.
-     * @param executor Command object.
+     * @param name     Name of the command.
+     * @param executor The {@link Command} to register.
      */
     public static void registerCommand(String name, Command executor) {
         try {
@@ -60,6 +60,32 @@ public class Util {
             MyMCPluginTemplate.getInstance().getLogger().severe("Failed to register command: " + name);
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Get a {@link SubCommand} from a list of SubCommands based on its name or alias name.
+     * @param name Name or alias of the sub command
+     * @param subCommands List of sub commands
+     * @return The {@link SubCommand}
+     */
+    public static SubCommand getSubCommand(String name, ArrayList<SubCommand> subCommands) {
+        Iterator<SubCommand> subCommandsIterator = subCommands.iterator();
+
+        while (subCommandsIterator.hasNext()) {
+            SubCommand subCommand = (SubCommand) subCommandsIterator.next();
+
+            if (subCommand.name().equalsIgnoreCase(name)) {
+                return subCommand;
+            }
+
+            for (String alias : subCommand.aliases()) {
+                if (name.equalsIgnoreCase(alias)) {
+                    return subCommand;
+                }
+            }
+        }
+
+        return null;
     }
 
 }
