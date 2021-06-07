@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+/** 
+ * Own implementation of Bukkit's {@link org.bukkit.command.CommandExecutor}.
+ */
 public interface CommandExecutor {
 
     public void setPermission(String permission);

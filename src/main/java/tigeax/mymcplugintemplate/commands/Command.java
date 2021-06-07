@@ -10,7 +10,14 @@ import org.bukkit.entity.Player;
 
 import tigeax.mymcplugintemplate.MyMCPluginTemplate;
 import tigeax.mymcplugintemplate.util.Util;
+import tigeax.mymcplugintemplate.eventlisteners.OnTabComplete;
 
+/**
+ * Extention of {@link BukkitCommand}.
+ * Adding TabCompletion though the {@link OnTabComplete} event listener.
+ * And implentation of {@link CommandExecutor}.
+ * Extention classes can implement {@link SubCommandManager}.
+ */
 public abstract class Command extends BukkitCommand implements CommandExecutor {
 
     protected MyMCPluginTemplate plugin;

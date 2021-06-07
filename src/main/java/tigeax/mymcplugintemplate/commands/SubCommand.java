@@ -8,7 +8,12 @@ import org.bukkit.entity.Player;
 import tigeax.mymcplugintemplate.MyMCPluginTemplate;
 import tigeax.mymcplugintemplate.util.Util;
 
-public class SubCommand implements CommandExecutor {
+/** 
+ * A sub command to be called from {@link Command}.
+ * Impementing {@link CommandExecutor}.
+ * Extention classes can implement {@link SubCommandManager}.
+ */
+public abstract class SubCommand implements CommandExecutor {
 
     protected MyMCPluginTemplate plugin;
     private String name;
