@@ -18,6 +18,7 @@ public abstract class SubCommand implements CommandExecutor {
     protected MyMCPluginTemplate plugin;
     private String name;
     public String permission = "";
+    public String[] aliases = new String[0];
 
     public SubCommand(String name) {
         plugin = MyMCPluginTemplate.getInstance();
@@ -36,8 +37,13 @@ public abstract class SubCommand implements CommandExecutor {
         return name;
     }
 
-    public String[] aliases() {
-        return new String[0];
+    public SubCommand setAliases(String[] aliases) {
+        this.aliases = aliases;
+        return this;
+    }
+
+    public String[] getAliases() {
+        return aliases;
     }
 
     @Override

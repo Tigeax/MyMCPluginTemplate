@@ -78,7 +78,7 @@ public class Util {
                 return subCommand;
             }
 
-            for (String alias : subCommand.aliases()) {
+            for (String alias : subCommand.getAliases()) {
                 if (name.equalsIgnoreCase(alias)) {
                     return subCommand;
                 }

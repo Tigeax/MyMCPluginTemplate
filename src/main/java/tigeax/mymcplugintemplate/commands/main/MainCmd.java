@@ -74,6 +74,7 @@ public class MainCmd extends Command implements SubCommandManager {
             return;
         }
 
+        // Remove subcommand name from the argument list
         args.remove(0);
 
         target.onCommand(sender, args);

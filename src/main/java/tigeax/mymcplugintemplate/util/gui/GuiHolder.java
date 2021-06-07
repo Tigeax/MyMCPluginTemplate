@@ -5,10 +5,15 @@ import org.bukkit.inventory.InventoryHolder;
 
 public class GuiHolder implements InventoryHolder {
 
+    Inventory inventory;
+
+    public GuiHolder() {
+        
+    }
+
     @Override
     public Inventory getInventory() {
-        // TODO Auto-generated method stub
-        return null;
+        return inventory;
     }
     
 }
