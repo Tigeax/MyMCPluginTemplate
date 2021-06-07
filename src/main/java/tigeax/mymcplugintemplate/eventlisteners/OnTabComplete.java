@@ -23,9 +23,7 @@ public class OnTabComplete implements Listener {
 
         Command command  = MyMCPluginTemplate.getInstance().getPluginCommand(commandName);
 
-        if (command == null) {
-            return;
-        }
+
 
         List<String> tabCompletions = command.getTabCompletions(args);
 
