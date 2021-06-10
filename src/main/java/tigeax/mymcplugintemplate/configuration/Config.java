@@ -15,17 +15,10 @@ public class Config extends YamlFile {
 
     public Config(MyMCPluginTemplate plugin) {
         super(plugin, "config.yml");
-        loadConfigFromFile();
+        loadDataFromFile();
     }
 
-    /** Reload the config file and get the settings again */
-    public void update() {
-        super.updateFile();
-        loadConfigFromFile();
-    }
-
-    /** Load settings from config. If not found, use the default value */
-    private void loadConfigFromFile() {
+    protected void loadDataFromFile() {
 
         // Debug
         debug = getBoolean("debug", true);

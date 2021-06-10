@@ -14,15 +14,10 @@ public class Messages extends YamlFile {
     public Messages(MyMCPluginTemplate plugin) {
         super(plugin, "messages.yml");
         this.plugin = plugin;
-        loadMessagesFromFile();
+        loadDataFromFile();
     }
 
-    public void update() {
-        super.updateFile();
-        loadMessagesFromFile();
-    }
-
-    private void loadMessagesFromFile() {
+    protected void loadDataFromFile() {
         helloPlayer = getMessage("helloPlayer");
         commandSenderNotAPlayer = getMessage("commandSenderNotAPlayer");
         notEnoughArguments = getMessage("notEnoughArguments");
