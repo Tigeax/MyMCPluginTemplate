@@ -9,7 +9,9 @@ import tigeax.mymcplugintemplate.commands.main.MainCmd;
 import tigeax.mymcplugintemplate.commands.menu.Menu;
 import tigeax.mymcplugintemplate.configuration.Config;
 import tigeax.mymcplugintemplate.configuration.Messages;
-import tigeax.mymcplugintemplate.eventlisteners.OnTabComplete;
+import tigeax.mymcplugintemplate.eventlisteners.InventoryClickEventListener;
+import tigeax.mymcplugintemplate.eventlisteners.TabCompleteEventListener;
+import tigeax.mymcplugintemplate.menu.TestMenu;
 import tigeax.mymcplugintemplate.util.commands.Command;
 
 public class MyMCPluginTemplate extends JavaPlugin {
@@ -18,6 +20,8 @@ public class MyMCPluginTemplate extends JavaPlugin {
 
     private Config config;
     private Messages messages;
+
+    public TestMenu testMenu;
 
     private ArrayList<Command> commands = new ArrayList<Command>();
 
@@ -36,7 +40,8 @@ public class MyMCPluginTemplate extends JavaPlugin {
         registerCommand(new Menu(config.guiCommandName, config.guiCommandAliases, "myplugin.menucommand"));
 
         // Register events
-        getServer().getPluginManager().registerEvents(new OnTabComplete(), this);
+        getServer().getPluginManager().registerEvents(new TabCompleteEventListener(), this);
+        getServer().getPluginManager().registerEvents(new InventoryClickEventListener(), this);
 
         // Log successful enabled message
         getLogger().info("Successfully enabled");

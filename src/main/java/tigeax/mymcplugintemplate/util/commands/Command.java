@@ -9,12 +9,12 @@ import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 
 import tigeax.mymcplugintemplate.MyMCPluginTemplate;
+import tigeax.mymcplugintemplate.eventlisteners.TabCompleteEventListener;
 import tigeax.mymcplugintemplate.util.Util;
-import tigeax.mymcplugintemplate.eventlisteners.OnTabComplete;
 
 /**
  * Extention of {@link BukkitCommand}.
- * Adding TabCompletion though the {@link OnTabComplete} event listener.
+ * Adding TabCompletion though the {@link TabCompleteEventListener} event listener.
  * And implentation of {@link CommandExecutor}.
  * Extention classes can implement {@link SubCommandManager}.
  */
